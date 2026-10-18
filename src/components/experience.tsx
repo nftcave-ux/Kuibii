@@ -58,6 +58,18 @@ const explanations = {
   claimed: ["The project-token amount already recorded as claimed. No real tokens are transferred.", "Practice rewards you have already collected. No real coins are sent."],
   withdraw: ["Records return of the full simulated principal and stops future yield for this deposit. Past yield still counts toward token claims.", "Take your original practice coins out. The reward faucet stops, but the drips you already gave still count."],
   claim: ["Available after campaign end. Records your pro-rata token allocation once; no on-chain transfer occurs.", "When the timer ends, collect your practice share of the treasure once. No real coins are delivered."],
+  format: ["The token standard. It determines divisibility, uniqueness and which features apply; incompatible features are rejected.", "What kind of treasure: everyday coins, unique collectibles, or puzzle shares of one collectible."],
+  fractional: ["A single NFT held in a vault and split into divisible shares. Set the source NFT, shares and redemption policy.", "One special collectible cut into puzzle pieces that many friends can own."],
+  vaultAsset: ["The asset deposited into the ERC-4626 vault that shares represent.", "What goes inside the vault that your tickets stand for."],
+  itemIds: ["ERC-1155 item IDs, each with its own supply.", "List each kind of item and how many of it exist."],
+  nesting: ["NFT containers that hold tokens, NFTs or fractions, and can contain further containers to any depth, each with its own release rule.", "Gift boxes that hold coins, and boxes inside boxes — like Russian dolls."],
+  nftCount: ["How many container NFTs this layer mints.", "How many gift boxes of this kind."],
+  vaultContents: ["What each container NFT holds and how much.", "What's inside each box and how much."],
+  beneficiary: ["Who receives the contents when released: heir, colleague, student or gift recipient.", "Who gets to open the box."],
+  releaseRule: ["When contents unlock: immediately, after a time, after a provable condition, or both.", "When the box can be opened: now, after a timer, after proving something, or both."],
+  proof: ["A provable condition and who or what verifies it: on-chain event, signed attestation, multisig, oracle or organizer review.", "Something you can prove, like graduating, and who checks it."],
+  cascade: ["A chain of distinct limited-supply tokens. Stage 1 is free; each later stage requires holding the previous token.", "Get treasure 1 free, show it to get treasure 2, show 2 to get 3…"],
+  stageSupply: ["The capped supply of a cascade stage token and how much each recipient gets.", "How many of this treasure exist and how many each friend gets."],
 } as const;
 
 export type HelpTopic = keyof typeof explanations;
@@ -106,6 +118,7 @@ export function AppHeader() {
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
       <Link to="/" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }} activeOptions={{ exact: true }}>{text("Conditional Distribution", "🍬 Treat Sharing")}</Link>
       <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
+      <Link to="/games" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Games", "🎮 Games")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
       <div className="flex items-center gap-2 border-l border-border pl-4">
         <Label htmlFor="kid-mode" className={kid ? "text-primary" : "text-muted-foreground"}>Kid Mode</Label>
