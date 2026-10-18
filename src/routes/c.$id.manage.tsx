@@ -13,6 +13,7 @@ import {
 } from "@/lib/campaigns.functions";
 import { bonusMultiplier, describe } from "@/lib/conditions";
 import { utilDef } from "@/lib/token-utility";
+import { TokenBlueprintSummary } from "@/components/token-blueprint-summary";
 import { allocationFor, CHAINS, downloadFile, parseCsv, toCsv, vestingSchedule } from "@/lib/distribution";
 
 export const Route = createFileRoute("/c/$id/manage")({
@@ -140,6 +141,7 @@ function ManagePage() {
           </div>
         );
       })()}
+      <TokenBlueprintSummary blueprint={c.token_config?.blueprint} />
       {over && <p className="mt-4 text-sm text-destructive">Allocations exceed the total supply.</p>}
 
       <div className="grid gap-4 py-8 md:grid-cols-2">
