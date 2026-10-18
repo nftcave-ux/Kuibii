@@ -1,0 +1,13 @@
+# Beginner-friendly modes
+- [ ] Add shared format-aware planning, nested NFT release rules and limited-supply cascade stages; save and export across both creators.
+- [ ] Add Games navigation and coming-soon cooperative puzzle concept.
+- [ ] Verify planning rules, saved specifications, navigation and small-screen fit.
+- [x] Add launchpad coin utility options, persist selections, and show them to backers with a specification download.
+- [x] Verify launchpad utility creation, reload persistence, downloaded values and small-screen fit; no runtime errors and build OK.
+- [x] Remove example staking campaigns from the launchpad list without deleting saved positions.
+- [x] Add a How it works page with beginner-friendly guides and all distribution conditions.
+- [x] Verify navigation, 29 conditions, category/search controls, Kid Mode and mobile fit; build OK and no runtime errors.
+- [x] Add persistent Kid/Pro navigation and shared explanatory controls.
+- [x] Apply mode terminology and explanations to creation, management, registration, launchpad and staking pages.
+- [x] Verify mode persistence, hover/tap help, Escape dismissal, tier/vesting controls, unique field IDs and small-screen fit; no runtime errors and build OK.
+- [x] Confirm campaign storage is available again (campaign read succeeded); saving checks were completed in the subsequent conditions task.- [x] Add token utility to creation: features, perks, supply split/economics, branding; shown on manage page with spec download.
