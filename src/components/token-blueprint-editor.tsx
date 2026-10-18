@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FORMATS, cascadeRequirements, makeCascade, makeLayer, type NftLayer, type TokenBlueprint, type TokenFormat } from "@/lib/token-blueprint";
 
 const selectStyle = "w-full min-w-0 rounded border border-input bg-background px-3 py-2 text-sm";
-export function TokenFormatPicker({ format, onChange, chain }: { format: TokenFormat; onChange: (format: TokenFormat) => void; chain?: string }) {
+export function TokenFormatPicker({ format, onChange, chain }: { format: TokenFormat; onChange: (format: TokenFormat) => void; chain?: string | undefined }) {
   const { text } = useExperience();
   const formats = chain ? FORMATS.filter((f) => chain === "solana" ? ["spl", "metaplex"].includes(f.id) : !["spl", "metaplex"].includes(f.id)) : FORMATS;
   return <div className="space-y-2">
@@ -22,7 +22,7 @@ export function TokenFormatPicker({ format, onChange, chain }: { format: TokenFo
   </div>;
 }
 
-export function TokenBlueprintEditor({ value: b, onChange, chain, showFormat = true }: { value: TokenBlueprint; onChange: (b: TokenBlueprint) => void; chain?: string; showFormat?: boolean }) {
+export function TokenBlueprintEditor({ value: b, onChange, chain, showFormat = true }: { value: TokenBlueprint; onChange: (b: TokenBlueprint) => void; chain?: string | undefined; showFormat?: boolean }) {
   const { text } = useExperience();
   const [count, setCount] = useState(100);
   const [cap, setCap] = useState(1000);

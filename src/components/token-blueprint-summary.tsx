@@ -1,7 +1,7 @@
 import { Help, useExperience } from "@/components/experience";
 import { FORMATS, cascadeRequirements, type TokenBlueprint } from "@/lib/token-blueprint";
 
-export function TokenBlueprintSummary({ blueprint: b }: { blueprint?: TokenBlueprint }) {
+export function TokenBlueprintSummary({ blueprint: b }: { blueprint?: TokenBlueprint | undefined }) {
   const { text } = useExperience();
   if (!b) return null;
   const f = FORMATS.find((x) => x.id === b.format);
