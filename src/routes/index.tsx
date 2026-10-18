@@ -13,6 +13,8 @@ import { CONDITIONS, USE_CASES, condDef, type Condition, type UseCase } from "@/
 import { CHAINS, vestingSchedule, type Tier, type Vesting } from "@/lib/distribution";
 import { TokenUtilityEditor } from "@/components/token-utility-editor";
 import { emptyConfig, type TokenConfig } from "@/lib/token-utility";
+import { TokenBlueprintEditor } from "@/components/token-blueprint-editor";
+import { compatibleFeature, emptyBlueprint } from "@/lib/token-blueprint";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -211,7 +213,11 @@ function CreatePage() {
         </div>
       </Section>
 
-      <Section n="05" title={text("Token utility", "Coin superpowers 🦸")}>
+      <Section n="05" title={text("Format, nesting & cascade", "Treasure type & gift boxes 🪆")}>
+        <TokenBlueprintEditor value={util.blueprint ?? emptyBlueprint()} chain={f.chain === "solana" ? "solana" : "evm"} onChange={(blueprint) => setUtil({ ...util, blueprint, features: Object.fromEntries(Object.entries(util.features).filter(([id]) => compatibleFeature(id, blueprint.format))) })} />
+      </Section>
+
+      <Section n="06" title={text("Token utility", "Coin superpowers 🦸")}>
         <TokenUtilityEditor value={util} onChange={setUtil} supply={f.total_supply} />
       </Section>
 
