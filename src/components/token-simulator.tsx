@@ -14,7 +14,7 @@ type Props = {
   perRecipient: number;
   vesting: Vesting;
   conditionCount: number;
-  blueprint?: TokenBlueprint;
+  blueprint?: TokenBlueprint | undefined;
 };
 
 /** Unlocked % of a vested allocation at a given month (what-if projection). */
