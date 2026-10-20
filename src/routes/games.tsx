@@ -16,7 +16,7 @@ export const Route = createFileRoute("/games")({
 function GamesPage() {
   const { text } = useExperience();
   return <div className="mx-auto max-w-3xl px-6 py-16">
-    <p className="mb-4 font-mono text-xs uppercase text-primary">MINT/PRESS · {text("Coming soon", "Coming soon 🚧")}</p>
+    <p className="mb-4 font-mono text-xs uppercase text-primary">KUIBII · {text("Coming soon", "Coming soon 🚧")}</p>
     <h1 className="text-5xl font-bold leading-tight">{text("Games", "Games 🎮")}</h1>
     <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{text(
       "Soon we will add games that combine with token distributions — a new distribution method based on attention and fun. Example: 1,000 puzzle pieces are given away as tokens or fractional NFT shares. Players have to find each other and combine their pieces; every merged piece leaves behind a ghost copy as proof of participation. Once all 1,000 pieces come together, a prize unlocks — maybe an airdrop for everyone who helped.",
