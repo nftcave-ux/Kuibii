@@ -1,4 +1,4 @@
-# Mintmaster Kids
+# Kuibii
 
 lets create a a interface for users to create tokens with conditionl distributions options, import from CV or people who register
 

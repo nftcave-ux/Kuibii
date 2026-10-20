@@ -7,9 +7,9 @@ import { CONDITIONS, USE_CASES } from "@/lib/conditions";
 
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({ meta: [
-    { title: "How it works — Mint Press" },
+    { title: "How it works — Kuibii" },
     { name: "description", content: "A practical guide to token distributions, simulated staking, eligibility conditions and campaign templates." },
-    { property: "og:title", content: "How it works — Mint Press" },
+    { property: "og:title", content: "How it works — Kuibii" },
     { property: "og:description", content: "Plan your distribution, understand staking yield and explore every eligibility rule." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },

@@ -24,9 +24,9 @@ const exampleLaunchIds = new Set([
 export const Route = createFileRoute("/launchpad/")({
   head: () => ({
     meta: [
-      { title: "No-loss launchpad — Mint Press" },
+      { title: "No-loss launchpad — Kuibii" },
       { name: "description", content: "Back projects with staking yield, not principal. Deposit staked assets, withdraw anytime, earn project tokens." },
-      { property: "og:title", content: "No-loss launchpad — Mint Press" },
+      { property: "og:title", content: "No-loss launchpad — Kuibii" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:description", content: "Staking yield funds the project. Your principal stays yours." },

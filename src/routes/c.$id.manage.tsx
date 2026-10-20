@@ -21,9 +21,9 @@ export const Route = createFileRoute("/c/$id/manage")({
   validateSearch: z.object({ key: z.string().optional() }),
   head: () => ({
     meta: [
-      { title: "Manage distribution — Mint Press" },
+      { title: "Manage distribution — Kuibii" },
       { name: "description", content: "Manage recipients, tiers and exports for your token distribution." },
-      { property: "og:title", content: "Manage distribution — Mint Press" },
+      { property: "og:title", content: "Manage distribution — Kuibii" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:description", content: "Manage recipients, tiers and exports for your token distribution." },

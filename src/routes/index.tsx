@@ -20,9 +20,9 @@ import { compatibleFeature, emptyBlueprint } from "@/lib/token-blueprint";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Create a token distribution — Mint Press" },
+      { title: "Create a token distribution — Kuibii" },
       { name: "description", content: "Set up a token, choose fixed, tiered or vesting rules, then import recipients by CSV or a public sign-up form." },
-      { property: "og:title", content: "Create a token distribution — Mint Press" },
+      { property: "og:title", content: "Create a token distribution — Kuibii" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:description", content: "Fixed, tiered and vesting token distributions with CSV import and public registration." },
