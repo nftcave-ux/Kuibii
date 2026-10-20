@@ -3,7 +3,6 @@ import { Pause, Play, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import { useExperience } from "@/components/experience";
 import type { Vesting } from "@/lib/distribution";
 import type { TokenBlueprint } from "@/lib/token-blueprint";
@@ -64,14 +63,14 @@ export function TokenSimulator({ symbol, supply, perRecipient, vesting, conditio
       </p>
       <div className="grid gap-4 sm:grid-cols-3">
         <div><Label htmlFor="sim-people">{text("Registrants", "Friends who join")}</Label><Input id="sim-people" type="number" min={0} value={people} className="font-mono" onChange={(e) => setPeople(Math.max(0, +e.target.value))} /></div>
-        <div><Label>{text("Pass conditions", "Pass the rules")}: {passRate}%</Label><Slider className="mt-3" value={[passRate]} max={100} step={1} onValueChange={([v]) => setPassRate(v ?? 0)} /></div>
-        {stages.length > 0 && <div><Label>{text("Advance per stage", "Move to next level")}: {stagePass}%</Label><Slider className="mt-3" value={[stagePass]} max={100} step={1} onValueChange={([v]) => setStagePass(v ?? 0)} /></div>}
+        <div><Label>{text("Pass conditions", "Pass the rules")}: {passRate}%</Label><input type="range" className="mt-3 w-full accent-primary" value={passRate} min={0} max={100} step={1} onChange={(e) => { const v = +e.target.value; setPassRate(v); }} /></div>
+        {stages.length > 0 && <div><Label>{text("Advance per stage", "Move to next level")}: {stagePass}%</Label><input type="range" className="mt-3 w-full accent-primary" value={stagePass} min={0} max={100} step={1} onChange={(e) => { const v = +e.target.value; setStagePass(v); }} /></div>}
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
         <Button size="sm" variant="outline" onClick={() => { if (month >= horizon) setMonth(0); setPlaying(!playing); }}>{playing ? <Pause className="mr-1 h-4 w-4" /> : <Play className="mr-1 h-4 w-4" />}{playing ? text("Pause", "Pause") : text("Play", "Go!")}</Button>
         <Button size="sm" variant="ghost" onClick={() => { setPlaying(false); setMonth(0); }}><RotateCcw className="mr-1 h-4 w-4" />{text("Reset", "Start over")}</Button>
-        <div className="min-w-40 flex-1"><Slider aria-label="Month" value={[month]} max={horizon} step={1} onValueChange={([v]) => { setPlaying(false); setMonth(v ?? 0); }} /></div>
+        <div className="min-w-40 flex-1"><input type="range" aria-label="Month" className="mt-3 w-full accent-primary" value={month} min={0} max={horizon} step={1} onChange={(e) => { const v = +e.target.value; setPlaying(false); setMonth(v); }} /></div>
         <span className="font-mono text-sm text-primary">{text("Month", "Month")} {month}</span>
       </div>
 
