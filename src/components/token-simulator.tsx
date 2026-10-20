@@ -91,7 +91,6 @@ export function TokenSimulator({ symbol, supply, perRecipient, vesting, conditio
         layers={layers.map((l) => ({ id: l.id, parent: l.parent_id, label: l.name, open: released(l) }))}
         left={Math.max(0, supply - allocated)} supply={supply} text={text} />
       <p className="text-[10px] text-muted-foreground">{text("Solid lines = flowing now, dashed = locked. Rule-based boxes are assumed proven from month 1.", "Solid lines = open, dashed = still locked.")}</p>
-      )}
     </div>
   );
 }
