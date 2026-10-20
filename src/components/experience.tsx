@@ -80,8 +80,8 @@ export const useExperience = () => {
 };
 
 export function ExperienceProvider({ children }: { children: ReactNode }) {
-  const [kid, setKidState] = useState(false);
-  useEffect(() => { try { setKidState(localStorage.getItem("mint-mode") === "kid"); } catch {} }, []);
+  const [kid, setKidState] = useState(true);
+  useEffect(() => { try { setKidState(localStorage.getItem("mint-mode") !== "pro"); } catch {} }, []);
   const setKid = (value: boolean) => {
     setKidState(value);
     try { localStorage.setItem("mint-mode", value ? "kid" : "pro"); } catch {}
@@ -118,6 +118,8 @@ export function AppHeader() {
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
       <Link to="/" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }} activeOptions={{ exact: true }}>{text("Conditional Distribution", "🍬 Treat Sharing")}</Link>
       <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
+      <Link to="/transactions" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Transactions", "✉️ Magic Sending")}</Link>
+      <Link to="/trade" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Trade", "🤝 Swap Shop")}</Link>
       <Link to="/games" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Games", "🎮 Games")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
       <div className="flex items-center gap-2 border-l border-border pl-4">
