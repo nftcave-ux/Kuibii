@@ -3,9 +3,9 @@ import { useExperience } from "@/components/experience";
 
 export const Route = createFileRoute("/games")({
   head: () => ({ meta: [
-    { title: "Games — Mint Press" },
+    { title: "Games — Kuibii" },
     { name: "description", content: "Coming soon: game-based token distributions powered by attention and fun." },
-    { property: "og:title", content: "Games — Mint Press" },
+    { property: "og:title", content: "Games — Kuibii" },
     { property: "og:description", content: "Coming soon: collaborative puzzle drops and game-based token distribution." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },

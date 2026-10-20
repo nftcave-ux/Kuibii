@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mint Press — Token distributions" },
+      { title: "Kuibii — Token distributions" },
       { name: "description", content: "Create tokens and distribute them with fixed, tiered and vesting rules." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

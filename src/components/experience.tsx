@@ -114,7 +114,7 @@ export function Field({ topic, label, children, className }: { topic: HelpTopic;
 export function AppHeader() {
   const { kid, setKid, text } = useExperience();
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
-    <Link to="/" className="font-mono text-sm tracking-widest">MINT/PRESS</Link>
+    <Link to="/" className="font-mono text-sm tracking-widest">KUIBII</Link>
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
       <Link to="/" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }} activeOptions={{ exact: true }}>{text("Conditional Distribution", "🍬 Treat Sharing")}</Link>
       <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
