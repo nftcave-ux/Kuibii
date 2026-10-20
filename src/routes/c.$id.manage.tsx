@@ -14,6 +14,7 @@ import {
 import { bonusMultiplier, describe } from "@/lib/conditions";
 import { utilDef } from "@/lib/token-utility";
 import { TokenBlueprintSummary } from "@/components/token-blueprint-summary";
+import { TokenSimulator } from "@/components/token-simulator";
 import { allocationFor, CHAINS, downloadFile, parseCsv, toCsv, vestingSchedule } from "@/lib/distribution";
 
 export const Route = createFileRoute("/c/$id/manage")({
@@ -142,6 +143,10 @@ function ManagePage() {
         );
       })()}
       <TokenBlueprintSummary blueprint={c.token_config?.blueprint} />
+      <details className="mt-6 rounded border border-border p-4">
+        <summary className="cursor-pointer font-bold">{text("Simulation (what-if)", "Pretend play 🔮")}</summary>
+        <div className="mt-4"><TokenSimulator symbol={c.symbol} supply={Number(c.total_supply)} perRecipient={allocationFor(c, null)} vesting={c.vesting} conditionCount={c.conditions.length} blueprint={c.token_config?.blueprint} /></div>
+      </details>
       {over && <p className="mt-4 text-sm text-destructive">Allocations exceed the total supply.</p>}
 
       <div className="grid gap-4 py-8 md:grid-cols-2">

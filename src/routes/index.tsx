@@ -14,6 +14,7 @@ import { CHAINS, vestingSchedule, type Tier, type Vesting } from "@/lib/distribu
 import { TokenUtilityEditor } from "@/components/token-utility-editor";
 import { emptyConfig, type TokenConfig } from "@/lib/token-utility";
 import { TokenBlueprintEditor } from "@/components/token-blueprint-editor";
+import { TokenSimulator } from "@/components/token-simulator";
 import { compatibleFeature, emptyBlueprint } from "@/lib/token-blueprint";
 
 export const Route = createFileRoute("/")({
@@ -219,6 +220,10 @@ function CreatePage() {
 
       <Section n="06" title={text("Token utility", "Coin superpowers 🦸")}>
         <TokenUtilityEditor value={util} onChange={setUtil} supply={f.total_supply} />
+      </Section>
+
+      <Section n="07" title={text("Simulation", "Pretend play 🔮")}>
+        <TokenSimulator symbol={f.symbol || "TOKEN"} supply={f.total_supply} perRecipient={f.distribution_mode === "fixed" ? f.fixed_amount : (tiers[0]?.amount ?? 0)} vesting={vesting} conditionCount={conds.length} blueprint={util.blueprint} />
       </Section>
 
       <div className="flex justify-end border-t border-border pt-8">
