@@ -4,7 +4,7 @@ lets create a a interface for users to create tokens with conditionl distributio
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://mintmaster-pro.lovable.app
+**Live app**: https://kuibii.fun/
 
 ## Build with Lovable
 
