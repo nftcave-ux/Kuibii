@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as TradeRouteImport } from './routes/trade'
+import { Route as TransactionsRouteImport } from './routes/transactions'
 import { Route as LaunchpadIndexRouteImport } from './routes/launchpad.index'
 import { Route as LaunchpadIdRouteImport } from './routes/launchpad.$id'
 import { Route as CIdManageRouteImport } from './routes/c.$id.manage'
@@ -30,6 +32,16 @@ const GamesRoute = GamesRouteImport.update({
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TradeRoute = TradeRouteImport.update({
+  id: '/trade',
+  path: '/trade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransactionsRoute = TransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LaunchpadIndexRoute = LaunchpadIndexRouteImport.update({
@@ -57,6 +69,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/trade': typeof TradeRoute
+  '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
   '/launchpad/': typeof LaunchpadIndexRoute
   '/c/$id/manage': typeof CIdManageRoute
@@ -66,6 +80,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/trade': typeof TradeRoute
+  '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
   '/launchpad': typeof LaunchpadIndexRoute
   '/c/$id/manage': typeof CIdManageRoute
@@ -76,6 +92,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/trade': typeof TradeRoute
+  '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
   '/launchpad/': typeof LaunchpadIndexRoute
   '/c/$id/manage': typeof CIdManageRoute
@@ -87,6 +105,8 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/trade'
+    | '/transactions'
     | '/launchpad/$id'
     | '/launchpad/'
     | '/c/$id/manage'
@@ -96,6 +116,8 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/trade'
+    | '/transactions'
     | '/launchpad/$id'
     | '/launchpad'
     | '/c/$id/manage'
@@ -105,6 +127,8 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/trade'
+    | '/transactions'
     | '/launchpad/$id'
     | '/launchpad/'
     | '/c/$id/manage'
@@ -115,6 +139,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamesRoute: typeof GamesRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  TradeRoute: typeof TradeRoute
+  TransactionsRoute: typeof TransactionsRoute
   LaunchpadIdRoute: typeof LaunchpadIdRoute
   LaunchpadIndexRoute: typeof LaunchpadIndexRoute
   CIdManageRoute: typeof CIdManageRoute
@@ -142,6 +168,20 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trade': {
+      id: '/trade'
+      path: '/trade'
+      fullPath: '/trade'
+      preLoaderRoute: typeof TradeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transactions': {
+      id: '/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof TransactionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/launchpad/': {
@@ -179,6 +219,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamesRoute: GamesRoute,
   HowItWorksRoute: HowItWorksRoute,
+  TradeRoute: TradeRoute,
+  TransactionsRoute: TransactionsRoute,
   LaunchpadIdRoute: LaunchpadIdRoute,
   LaunchpadIndexRoute: LaunchpadIndexRoute,
   CIdManageRoute: CIdManageRoute,
