@@ -229,7 +229,7 @@ function CreatePage() {
       </Section>
 
       <Section n="05" title={text("Format, nesting & cascade", "Treasure type & gift boxes 🪆")}>
-        <TokenBlueprintEditor value={util.blueprint ?? emptyBlueprint()} chain={f.chain === "solana" ? "solana" : "evm"} onChange={(blueprint) => setUtil({ ...util, blueprint, features: Object.fromEntries(Object.entries(util.features).filter(([id]) => compatibleFeature(id, blueprint.format))) })} />
+        <TokenBlueprintEditor value={util.blueprint ?? emptyBlueprint()} chain="evm" onChange={(blueprint) => setUtil({ ...util, blueprint, features: Object.fromEntries(Object.entries(util.features).filter(([id]) => compatibleFeature(id, blueprint.format))) })} />
       </Section>
 
       <Section n="06" title={text("Token utility", "Coin superpowers 🦸")}>
