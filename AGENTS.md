@@ -14,3 +14,4 @@
 - Render the shared navigation and single main landmark in the root layout; content routes render unframed containers — why: every page needs the mode switch and exactly one primary landmark.
 - Keep the guide's condition list driven by the shared CONDITIONS catalog, with explanations keyed by condition ID — why: the guide and creator must list the same rules.
 - Share the token utility catalog, editor and validation schema across distribution campaigns and launchpad projects; launchpad utility is descriptive and never modifies the backer pool, yield or claims — why: coin planning must stay consistent without changing funding mechanics.
+- Keep creation section contents mounted when collapsed — why: collapsing must preserve unsaved settings and simulator state.

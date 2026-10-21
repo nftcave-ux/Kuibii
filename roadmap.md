@@ -1,4 +1,5 @@
 # Beginner-friendly modes
+- [ ] Make token creation sections collapsible and verify settings survive reopening.
 - [ ] Add shared format-aware planning, nested NFT release rules and limited-supply cascade stages; save and export across both creators.
 - [ ] Add Games navigation and coming-soon cooperative puzzle concept.
 - [ ] Verify planning rules, saved specifications, navigation and small-screen fit.

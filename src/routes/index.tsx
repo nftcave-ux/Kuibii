@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Plus, Trash2 } from "lucide-react";
+import { ChevronDown, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,13 +32,27 @@ export const Route = createFileRoute("/")({
 });
 
 function Section({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(n === "01");
+  const triggerId = `creation-heading-${n}`;
+  const panelId = `creation-panel-${n}`;
   return (
-    <section className="grid gap-6 border-t border-border py-10 md:grid-cols-[180px_1fr]">
-      <div>
-        <div className="font-mono text-xs text-primary">{n}</div>
-        <h2 className="mt-1 text-lg font-bold">{title}</h2>
-      </div>
-      <div className="min-w-0 space-y-5">{children}</div>
+    <section className="border-t border-border">
+      <h2>
+        <Button
+          id={triggerId}
+          type="button"
+          variant="ghost"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((value) => !value)}
+          className="h-auto w-full justify-start gap-4 whitespace-normal rounded-none px-0 py-5 text-left hover:bg-transparent hover:text-primary md:py-6"
+        >
+          <span className="shrink-0 font-mono text-xs text-primary">{n}</span>
+          <span className="min-w-0 flex-1 text-lg font-bold">{title}</span>
+          <ChevronDown aria-hidden="true" className={`transition-transform motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
+        </Button>
+      </h2>
+      <div id={panelId} role="region" aria-labelledby={triggerId} hidden={!open} className="min-w-0 space-y-5 pb-8 md:pl-8">{children}</div>
     </section>
   );
 }
