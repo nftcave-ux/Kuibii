@@ -7,11 +7,11 @@ export type Vesting = {
 };
 
 export const CHAINS = [
-  { id: "ethereum", label: "Ethereum" },
-  { id: "base", label: "Base" },
-  { id: "polygon", label: "Polygon" },
   { id: "arbitrum", label: "Arbitrum" },
-  { id: "solana", label: "Solana" },
+  { id: "base", label: "Base" },
+  { id: "ethereum", label: "Ethereum" },
+  { id: "fuse", label: "Fuse" },
+  { id: "polygon", label: "Polygon" },
 ] as const;
 
 export function isValidWallet(chain: string, wallet: string) {
