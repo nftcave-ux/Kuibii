@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { startDomTranslation, type Lang } from "@/lib/i18n";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -73,20 +74,34 @@ const explanations = {
 } as const;
 
 export type HelpTopic = keyof typeof explanations;
-const ExperienceContext = createContext({ kid: false, setKid: (_value: boolean) => {} });
+const ExperienceContext = createContext({ kid: false, setKid: (_value: boolean) => {}, lang: "en" as Lang, setLang: (_value: Lang) => {} });
 export const useExperience = () => {
-  const { kid, setKid } = useContext(ExperienceContext);
-  return { kid, setKid, text: (pro: string, child: string) => kid ? child : pro };
+  const { kid, setKid, lang, setLang } = useContext(ExperienceContext);
+  return { kid, setKid, lang, setLang, text: (pro: string, child: string) => kid ? child : pro };
 };
 
 export function ExperienceProvider({ children }: { children: ReactNode }) {
   const [kid, setKidState] = useState(true);
-  useEffect(() => { try { setKidState(localStorage.getItem("mint-mode") !== "pro"); } catch {} }, []);
+  const [lang, setLangState] = useState<Lang>("en");
+  useEffect(() => { try {
+    setKidState(localStorage.getItem("mint-mode") !== "pro");
+    const saved = localStorage.getItem("kuibii-lang");
+    setLangState(saved === "es" || (!saved && navigator.language.startsWith("es")) ? "es" : "en");
+  } catch {} }, []);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    if (lang !== "es") return;
+    return startDomTranslation(document.body);
+  }, [lang]);
   const setKid = (value: boolean) => {
     setKidState(value);
     try { localStorage.setItem("mint-mode", value ? "kid" : "pro"); } catch {}
   };
-  return <ExperienceContext.Provider value={{ kid, setKid }}><TooltipProvider delayDuration={200}>{children}</TooltipProvider></ExperienceContext.Provider>;
+  const setLang = (value: Lang) => {
+    setLangState(value);
+    try { localStorage.setItem("kuibii-lang", value); } catch {}
+  };
+  return <ExperienceContext.Provider value={{ kid, setKid, lang, setLang }}><TooltipProvider delayDuration={200}>{children}</TooltipProvider></ExperienceContext.Provider>;
 }
 
 export function Help({ topic, children }: { topic: HelpTopic; children?: ReactNode }) {
@@ -112,7 +127,7 @@ export function Field({ topic, label, children, className }: { topic: HelpTopic;
 }
 
 export function AppHeader() {
-  const { kid, setKid, text } = useExperience();
+  const { kid, setKid, lang, setLang, text } = useExperience();
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
     <Link to="/" className="font-mono text-sm tracking-widest">KUIBII</Link>
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
@@ -126,6 +141,12 @@ export function AppHeader() {
         <Label htmlFor="kid-mode" className={kid ? "text-primary" : "text-muted-foreground"}>Kid Mode</Label>
         <Switch id="kid-mode" aria-label="Kid Mode / Pro Mode" checked={kid} onCheckedChange={setKid} />
         <Label htmlFor="kid-mode" className={kid ? "text-muted-foreground" : "text-primary"}>Pro Mode</Label>
+      </div>
+      <div className="flex items-center rounded border border-border p-0.5 font-mono text-xs" role="group" aria-label="Language" data-no-translate>
+        {(["en", "es"] as const).map((l) => (
+          <Button key={l} type="button" variant="ghost" size="sm" aria-pressed={lang === l} onClick={() => setLang(l)}
+            className={`h-7 px-2 ${lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{l.toUpperCase()}</Button>
+        ))}
       </div>
     </nav>
   </header>;
