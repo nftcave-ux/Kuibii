@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { startDomTranslation, type Lang } from "@/lib/i18n";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -126,7 +127,7 @@ export function Field({ topic, label, children, className }: { topic: HelpTopic;
 }
 
 export function AppHeader() {
-  const { kid, setKid, text } = useExperience();
+  const { kid, setKid, lang, setLang, text } = useExperience();
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
     <Link to="/" className="font-mono text-sm tracking-widest">KUIBII</Link>
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
