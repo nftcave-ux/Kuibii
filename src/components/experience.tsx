@@ -136,6 +136,7 @@ export function AppHeader() {
       <Link to="/transactions" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Transactions", "✉️ Magic Sending")}</Link>
       <Link to="/trade" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Trade", "🤝 Swap Shop")}</Link>
       <Link to="/games" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Games", "🎮 Games")}</Link>
+      <Link to="/incentives" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Incentives", "🧲 Incentives")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
       <div className="flex items-center gap-2 border-l border-border pl-4">
         <Label htmlFor="kid-mode" className={kid ? "text-primary" : "text-muted-foreground"}>Kid Mode</Label>

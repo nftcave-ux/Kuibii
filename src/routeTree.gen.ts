@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as IncentivesRouteImport } from './routes/incentives'
 import { Route as TradeRouteImport } from './routes/trade'
 import { Route as TransactionsRouteImport } from './routes/transactions'
 import { Route as LaunchpadIndexRouteImport } from './routes/launchpad.index'
@@ -32,6 +33,11 @@ const GamesRoute = GamesRouteImport.update({
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncentivesRoute = IncentivesRouteImport.update({
+  id: '/incentives',
+  path: '/incentives',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TradeRoute = TradeRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/incentives': typeof IncentivesRoute
   '/trade': typeof TradeRoute
   '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/incentives': typeof IncentivesRoute
   '/trade': typeof TradeRoute
   '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/incentives': typeof IncentivesRoute
   '/trade': typeof TradeRoute
   '/transactions': typeof TransactionsRoute
   '/launchpad/$id': typeof LaunchpadIdRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/incentives'
     | '/trade'
     | '/transactions'
     | '/launchpad/$id'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/incentives'
     | '/trade'
     | '/transactions'
     | '/launchpad/$id'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/how-it-works'
+    | '/incentives'
     | '/trade'
     | '/transactions'
     | '/launchpad/$id'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamesRoute: typeof GamesRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  IncentivesRoute: typeof IncentivesRoute
   TradeRoute: typeof TradeRoute
   TransactionsRoute: typeof TransactionsRoute
   LaunchpadIdRoute: typeof LaunchpadIdRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incentives': {
+      id: '/incentives'
+      path: '/incentives'
+      fullPath: '/incentives'
+      preLoaderRoute: typeof IncentivesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/trade': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamesRoute: GamesRoute,
   HowItWorksRoute: HowItWorksRoute,
+  IncentivesRoute: IncentivesRoute,
   TradeRoute: TradeRoute,
   TransactionsRoute: TransactionsRoute,
   LaunchpadIdRoute: LaunchpadIdRoute,
