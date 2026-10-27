@@ -23,7 +23,7 @@ const createSchema = z.object({
   symbol: z.string().trim().min(1).max(11).regex(/^[A-Za-z0-9]+$/),
   decimals: z.number().int().min(0).max(18),
   total_supply: z.number().min(1).max(1e18),
-  chain: z.enum(["arbitrum", "base", "ethereum", "fuse", "polygon"]),
+  chain: z.enum(["arbitrum", "avalanche", "base", "ethereum", "fuse", "polygon"]),
   distribution_mode: z.enum(["fixed", "tiers"]),
   fixed_amount: z.number().min(0).max(1e18),
   tiers: z.array(tierSchema).max(20),

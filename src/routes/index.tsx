@@ -64,7 +64,7 @@ function CreatePage() {
   const create = useServerFn(createCampaign);
   const [busy, setBusy] = useState(false);
   const [f, setF] = useState({
-    name: "", symbol: "", decimals: 18, total_supply: 1_000_000, chain: "base" as (typeof CHAINS)[number]["id"],
+    name: "", symbol: "", decimals: 18, total_supply: 1_000_000, chain: "fuse" as (typeof CHAINS)[number]["id"],
     distribution_mode: "fixed" as "fixed" | "tiers", fixed_amount: 100,
   });
   const [tiers, setTiers] = useState<Tier[]>([{ name: "Core", amount: 1000 }, { name: "Community", amount: 100 }]);
@@ -81,7 +81,7 @@ function CreatePage() {
   const warnings = createWarnings({ ...f, tiers, vesting });
   function resetDraft() {
     draft.clear();
-    setF({ name: "", symbol: "", decimals: 18, total_supply: 1_000_000, chain: "base", distribution_mode: "fixed", fixed_amount: 100 });
+    setF({ name: "", symbol: "", decimals: 18, total_supply: 1_000_000, chain: "fuse", distribution_mode: "fixed", fixed_amount: 100 });
     setTiers([{ name: "Core", amount: 1000 }, { name: "Community", amount: 100 }]);
     setVesting({ enabled: false, tge_percent: 20, cliff_months: 3, duration_months: 12 });
     setConds([]); setUtil(emptyConfig);
@@ -139,19 +139,25 @@ function CreatePage() {
         <div className="grid gap-4 sm:grid-cols-2">
           <Field topic="name" label={text("Name", "Coin name ✨")}>{(fieldId) => <Input id={fieldId} value={f.name} maxLength={60} placeholder="Harbor Credits" onChange={(e) => setF({ ...f, name: e.target.value })} />}</Field>
           <Field topic="symbol" label={text("Symbol", "Coin nickname")}>{(fieldId) => <Input id={fieldId} value={f.symbol} maxLength={11} placeholder="HBR" className="font-mono uppercase" onChange={(e) => setF({ ...f, symbol: e.target.value.replace(/[^a-z0-9]/gi, "") })} />}</Field>
-          <Field topic="supply" label={text("Total supply", "Treasure chest size 🪙")}>{(fieldId) => <Input id={fieldId} type="number" value={f.total_supply} className="font-mono" onChange={(e) => setF({ ...f, total_supply: +e.target.value })} />}</Field>
-          <Field topic="decimals" label={text("Decimals", "Tiny coin pieces")}>{(fieldId) => <Input id={fieldId} type="number" min={0} max={18} value={f.decimals} className="font-mono" onChange={(e) => setF({ ...f, decimals: +e.target.value })} />}</Field>
+          <Field topic="supply" label={text("Total supply (fixed for now)", "Treasure chest size 🪙 (fixed)")}>{(fieldId) => <Input id={fieldId} type="number" value={f.total_supply} disabled readOnly aria-label="Total supply" className="cursor-not-allowed bg-muted font-mono opacity-80" />}</Field>
+          <Field topic="decimals" label={text("Decimals (fixed for now)", "Tiny coin pieces (fixed)")}>{(fieldId) => <Input id={fieldId} type="number" value={f.decimals} disabled readOnly aria-label="Decimals" className="cursor-not-allowed bg-muted font-mono opacity-80" />}</Field>
         </div>
         <div>
           <Help topic="network"><Label>{text("Network", "Coin world 🌍")}</Label></Help>
           <div className="mt-2 flex flex-wrap gap-2">
-            {CHAINS.map((c) => (
-               <Button type="button" variant="outline" aria-pressed={f.chain === c.id} key={c.id} onClick={() => setF({ ...f, chain: c.id })}
-                className={`rounded border px-3 py-1.5 text-sm transition ${f.chain === c.id ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary"}`}>
-                {c.label}
-               </Button>
-            ))}
+            {CHAINS.map((c) => {
+              const usable = "usable" in c;
+              return (
+                <Button type="button" variant="outline" aria-pressed={f.chain === c.id} key={c.id} disabled={!usable}
+                  title={usable ? undefined : text("Coming soon", "Coming soon")}
+                  onClick={() => setF({ ...f, chain: c.id })}
+                  className={`rounded border px-3 py-1.5 text-sm transition disabled:cursor-not-allowed disabled:opacity-50 ${f.chain === c.id ? "border-primary bg-primary text-primary-foreground" : usable ? "border-success text-success hover:bg-success/10" : "border-border text-muted-foreground"}`}>
+                  {c.label}
+                </Button>
+              );
+            })}
           </div>
+          <p className="mt-2 text-xs text-muted-foreground">{text("Only Fuse is usable for now — the other networks are coming soon.", "Only Fuse works for now — the other worlds are coming soon.")}</p>
         </div>
       </Section>
 
