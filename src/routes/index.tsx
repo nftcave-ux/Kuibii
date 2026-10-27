@@ -102,6 +102,7 @@ function CreatePage() {
     try {
       const res = await create({ data: { ...f, tiers: f.distribution_mode === "tiers" ? tiers : [], vesting, conditions: conds, token_config: util } });
       localStorage.setItem(`mint-key-${res.id}`, res.key);
+      draft.clear();
       navigate({ to: "/c/$id/manage", params: { id: res.id }, search: { key: res.key } });
     } catch {
       toast.error("Please check the fields and try again.");
