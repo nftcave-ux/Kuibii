@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import { expect, test } from "bun:test";
 import { createWarnings } from "../src/lib/draft";
 const base = { total_supply: 1000, distribution_mode: "fixed" as const, fixed_amount: 100, tiers: [], vesting: { enabled: false, tge_percent: 20, cliff_months: 3, duration_months: 12 } };
 test("ok config has no warnings", () => expect(createWarnings(base)).toEqual([]));
