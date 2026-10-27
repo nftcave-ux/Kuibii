@@ -75,8 +75,9 @@ function CreatePage() {
   const [pick, setPick] = useState(CONDITIONS[0]!.id);
   const draftValue = useMemo(() => ({ f, tiers, vesting, conds, util }), [f, tiers, vesting, conds, util]);
   const draft = useDraft("kuibii-draft-create", draftValue, (d) => {
-    // Locked networks (only Fuse is usable for now) fall back to Fuse when restoring a saved draft.
-    if (d.f) setF({ ...d.f, chain: "fuse" }); if (d.tiers) setTiers(d.tiers); if (d.vesting) setVesting(d.vesting);
+    // A saved draft pointing at a locked network (only Fuse is usable for now) falls back to Fuse.
+    if (d.f) setF({ ...d.f, chain: CHAINS.some((c) => c.id === d.f?.chain && "usable" in c) ? d.f.chain : "fuse" });
+    if (d.tiers) setTiers(d.tiers); if (d.vesting) setVesting(d.vesting);
     if (d.conds) setConds(d.conds); if (d.util) setUtil(d.util);
   });
   const warnings = createWarnings({ ...f, tiers, vesting });
