@@ -1057,7 +1057,7 @@
   "Start": "Empezar",
   "Start a project 🚀": "Iniciar un proyecto 🚀",
   "Start from a template": "Empezar desde una plantilla",
-  "Start over": "Volver a empezar",
+  "Start over": "Empezar de nuevo",
   "Start the challenge 🚀": "Comenzar el desafío 🚀",
   "Starting price (USD)": "Precio inicial (USD)",
   "Starting price 💵": "Precio inicial 💵",
@@ -1410,5 +1410,14 @@
   "Yearly new supply (inflation)": "Nueva emisión anual (inflación)",
   "Yearly burn": "Quema anual",
   "Yearly demand growth": "Crecimiento anual de la demanda",
-  "Utility strength": "Fuerza de la utilidad"
+  "Utility strength": "Fuerza de la utilidad",
+  "Draft saved in this browser": "Borrador guardado en este navegador",
+  "Saved on this device 💾": "Guardado en este dispositivo 💾",
+  "Start fresh": "Empezar de cero",
+  "Total supply must be greater than 0.": "El suministro total debe ser mayor que 0.",
+  "Amount per recipient is larger than the total supply.": "La cantidad por destinatario supera el suministro total.",
+  "A group's amount is larger than the total supply.": "La cantidad de un grupo supera el suministro total.",
+  "Every group needs a name.": "Cada grupo necesita un nombre.",
+  "Unlock at start must be between 0% and 100%.": "El desbloqueo inicial debe estar entre 0% y 100%.",
+  "The waiting period is longer than the whole unlock time.": "El periodo de espera es más largo que todo el tiempo de desbloqueo."
 }
