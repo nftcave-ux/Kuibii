@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useExperience } from "@/components/experience";
+import { useDraft } from "@/lib/draft";
 
 /** [pro label, kid label, description pro, description kid] */
 export type Opt = { id: string; pro: string; kid: string; dpro: string; dkid: string; params?: { key: string; pro: string; kid: string; placeholder?: string }[] };
@@ -32,6 +33,11 @@ export function ContractBuilder({ kind, groups, extraFields }: { kind: string; g
   const [conds, setConds] = useState<Cond[]>([]);
   const [logic, setLogic] = useState<"all" | "any">("all");
   const [priv, setPriv] = useState(false);
+  const draftValue = useMemo(() => ({ picked, params, fields, conds, logic, priv }), [picked, params, fields, conds, logic, priv]);
+  useDraft(`kuibii-draft-${kind}`, draftValue, (d) => {
+    if (d.picked) setPicked(d.picked); if (d.params) setParams(d.params); if (d.fields) setFields(d.fields);
+    if (d.conds) setConds(d.conds); if (d.logic) setLogic(d.logic); if (typeof d.priv === "boolean") setPriv(d.priv);
+  });
 
   const toggle = (g: OptGroup, id: string) => setPicked((p) => {
     const cur = p[g.id] ?? [];

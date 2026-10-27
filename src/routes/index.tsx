@@ -1,7 +1,8 @@
 import { Field, Help, useExperience } from "@/components/experience";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { createWarnings, useDraft } from "@/lib/draft";
 import { toast } from "sonner";
 import { ChevronDown, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -72,6 +73,19 @@ function CreatePage() {
   const [conds, setConds] = useState<Condition[]>([]);
   const [util, setUtil] = useState<TokenConfig>(emptyConfig);
   const [pick, setPick] = useState(CONDITIONS[0]!.id);
+  const draftValue = useMemo(() => ({ f, tiers, vesting, conds, util }), [f, tiers, vesting, conds, util]);
+  const draft = useDraft("kuibii-draft-create", draftValue, (d) => {
+    if (d.f) setF(d.f); if (d.tiers) setTiers(d.tiers); if (d.vesting) setVesting(d.vesting);
+    if (d.conds) setConds(d.conds); if (d.util) setUtil(d.util);
+  });
+  const warnings = createWarnings({ ...f, tiers, vesting });
+  function resetDraft() {
+    draft.clear();
+    setF({ name: "", symbol: "", decimals: 18, total_supply: 1_000_000, chain: "base", distribution_mode: "fixed", fixed_amount: 100 });
+    setTiers([{ name: "Core", amount: 1000 }, { name: "Community", amount: 100 }]);
+    setVesting({ enabled: false, tge_percent: 20, cliff_months: 3, duration_months: 12 });
+    setConds([]); setUtil(emptyConfig);
+  }
   const { kid } = useExperience();
   function applyCase(u: UseCase) {
     setF((x) => ({ ...x, distribution_mode: u.mode, fixed_amount: u.fixed_amount || x.fixed_amount }));
@@ -240,8 +254,16 @@ function CreatePage() {
         <TokenSimulator symbol={f.symbol || "TOKEN"} supply={f.total_supply} perRecipient={f.distribution_mode === "fixed" ? f.fixed_amount : (tiers[0]?.amount ?? 0)} vesting={vesting} conditionCount={conds.length} blueprint={util.blueprint} />
       </Section>
 
-      <div className="flex justify-end border-t border-border pt-8">
-        <Button size="lg" disabled={busy} onClick={submit}>{busy ? text("Creating…", "Preparing your treasure…") : text("Create distribution →", "Create Magic Coins ✨")}</Button>
+      {warnings.length > 0 && (
+        <ul role="alert" className="mb-6 space-y-1 rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+          {warnings.map((w) => <li key={w}>⚠ {w}</li>)}
+        </ul>
+      )}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
+        <p className="text-xs text-muted-foreground">
+          {draft.savedAt ? <>{text("Draft saved in this browser", "Saved on this device 💾")} · <button type="button" className="underline hover:text-primary" onClick={resetDraft}>{text("Start over", "Start fresh")}</button></> : null}
+        </p>
+        <Button size="lg" disabled={busy || warnings.length > 0} onClick={submit}>{busy ? text("Creating…", "Preparing your treasure…") : text("Create distribution →", "Create Magic Coins ✨")}</Button>
       </div>
     </div>
   );
