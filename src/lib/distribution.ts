@@ -8,9 +8,10 @@ export type Vesting = {
 
 export const CHAINS = [
   { id: "arbitrum", label: "Arbitrum" },
+  { id: "avalanche", label: "Avalanche" },
   { id: "base", label: "Base" },
   { id: "ethereum", label: "Ethereum" },
-  { id: "fuse", label: "Fuse" },
+  { id: "fuse", label: "Fuse", usable: true },
   { id: "polygon", label: "Polygon" },
 ] as const;
 

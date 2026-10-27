@@ -3,16 +3,23 @@ import assert from 'node:assert/strict';
 
 const { CHAINS, isValidWallet } = await import('../src/lib/distribution.ts');
 
-test('network list replaces Solana with Fuse and orders networks alphabetically', () => {
+test('network list includes Avalanche, keeps Fuse and orders networks alphabetically', () => {
   assert.deepEqual(
     CHAINS.map((chain) => chain.label),
-    ['Arbitrum', 'Base', 'Ethereum', 'Fuse', 'Polygon'],
+    ['Arbitrum', 'Avalanche', 'Base', 'Ethereum', 'Fuse', 'Polygon'],
   );
   assert.deepEqual(
     CHAINS.map((chain) => chain.id),
-    ['arbitrum', 'base', 'ethereum', 'fuse', 'polygon'],
+    ['arbitrum', 'avalanche', 'base', 'ethereum', 'fuse', 'polygon'],
   );
   assert.equal(CHAINS.some((chain) => chain.id === 'solana'), false);
+});
+
+test('Fuse is the only usable network for now', () => {
+  assert.deepEqual(
+    CHAINS.filter((chain) => 'usable' in chain).map((chain) => chain.id),
+    ['fuse'],
+  );
 });
 
 test('Fuse uses EVM wallet validation and rejects Solana-style addresses', () => {
