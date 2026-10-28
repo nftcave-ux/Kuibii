@@ -22,11 +22,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Create a token distribution — Kuibii" },
-      { name: "description", content: "Set up a token, choose fixed, tiered or vesting rules, then import recipients by CSV or a public sign-up form." },
-      { property: "og:title", content: "Create a token distribution — Kuibii" },
+      { name: "description", content: "Kuibii is a visual, no-code playground for programmable tokens, conditional money, and smart agreements." },
+      { property: "og:title", content: "Kuibii — Visual playground for programmable tokens" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:description", content: "Fixed, tiered and vesting token distributions with CSV import and public registration." },
+      { property: "og:description", content: "Kuibii is a visual, no-code playground for programmable tokens, conditional money, and smart agreements." },
     ],
   }),
   component: CreatePage,
@@ -119,7 +119,10 @@ function CreatePage() {
         <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] md:text-6xl">
           {text("Token Creation", "Create Magic Coins ✨")}<br /><span className="text-primary">{text("Conditional Distribution", "Decide who gets the loot.")}</span>
         </h1>
-        <p className="mt-5 max-w-xl text-muted-foreground">
+        <p className="mt-6 max-w-2xl text-lg font-semibold text-foreground">
+          {text("Kuibii is a visual, no-code playground for programmable tokens, conditional money, and smart agreements.", "Kuibii is a visual, no-code playground for programmable tokens, conditional money, and smart agreements.")}
+        </p>
+        <p className="mt-3 max-w-xl text-muted-foreground">
           {text("Define the token, set the distribution rules, then add recipients from a CSV or a public registration link.", "Name your coins, choose how to share the treasure, then invite friends or add your guest list.")}
         </p>
       </div>
