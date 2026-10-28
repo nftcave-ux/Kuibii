@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Kuibii — Token distributions" },
-      { name: "description", content: "Create tokens and distribute them with fixed, tiered and vesting rules." },
+      { name: "description", content: "Kuibii is a visual, no-code playground for programmable tokens, conditional money, and smart agreements." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
