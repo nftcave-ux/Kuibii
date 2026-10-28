@@ -1,6 +1,6 @@
 # Kuibii
 
-**Live app**: https://kuibii.fun/
+**Live app**: No link yet
 
 ## Development
 
